@@ -1,0 +1,5 @@
+<?php
+
+return [
+    'api-key' => 'Trello API key (short ome)',
+];

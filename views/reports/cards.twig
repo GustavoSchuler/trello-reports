@@ -1,0 +1,24 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    {% for c in cards %}
+        <div class="row">
+            <div class="col-md-4">
+                {{ c.name }}
+            </div>
+
+            <div class="col-md-3">
+                Labels:
+                {% for l in c.idLabels %}
+                    {{ trello_label(l) }}<br />
+                {% endfor %}
+                </div>
+            <div class="col-md-3">
+                Members:
+                {% for u in c.idMembers %}
+                    {{ trello_user(u) }}<br />
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

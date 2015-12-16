@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <ul>
+        {% for b in boards %}
+            <li>
+                <a href="?board={{ b.id }}">{{ b.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
