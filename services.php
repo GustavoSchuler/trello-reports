@@ -64,3 +64,7 @@ $app['cards.repository'] = $app->share(function($app) {
 $app['members'] = $app->share(function($app) {
     return new \App\Services\Members($app['trello'], $app['config']['dbCacheDir']);
 });
+
+$app['list'] = $app->share(function($app) {
+    return new \App\Services\Lane($app['trello'], $app['config']['dbCacheDir']);
+});

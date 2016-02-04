@@ -6,7 +6,7 @@ $app->get('/logout', 'auth.controller:logoutAction');
 $app->get('/token', 'auth.controller:tokenAction');
 $app->get('/board', "default.controller:listBoardsAction");
 $app->get('/reports', "reports.controller:indexAction");
-$app->get('/reports/time', "reports.controller:timeAction");
+$app->match('/reports/time', "reports.controller:timeAction");
 
 $app->get(
     '/board/{id}',

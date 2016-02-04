@@ -12,13 +12,11 @@ class CardsRepository
 
     protected $trello;
     protected $cacheDir;
-    protected $listDone;
 
     public function __construct(Client $trello, $config)
     {
         $this->trello   = $trello;
         $this->cacheDir = $config['dbCacheDir'];
-        $this->listDone = $config['listDone'];
     }
 
     public function getCards($ids)
@@ -87,20 +85,23 @@ class CardsRepository
         return $card;
     }
 
-    public function getDoneInPeriod(\DateTime $from, \DateTime $to)
-    {
-        $cards = $this->getCardsInList($this->listDone);
-
-        return $cards;
-    }
-
     public function getInPeriod(\DateTime $from, \DateTime $to, $board)
     {
         $cards = $this->getCardsInBoard($board);
 
+        $cards = array_filter($cards, function(Card $item) use($from, $to){
+            $date = $item->getLastChangeDate();
+            return $date >= $from && $date <= $to;
+        });
+
         return $cards;
     }
 
+    /**
+     * @param $board
+     *
+     * @return Card[]
+     */
     public function getCardsInBoard($board)
     {
         $trello = $this->trello;
