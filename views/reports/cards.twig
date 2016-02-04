@@ -4,7 +4,7 @@
     {% for c in cards %}
         <div class="row">
             <div class="col-md-4">
-                {{ c.name }}
+                <a href="{{ path('GET_card_id', {id: c.id}) }}">{{ c.name }}</a>
             </div>
 
             <div class="col-md-3">

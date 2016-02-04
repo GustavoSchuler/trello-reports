@@ -2,4 +2,5 @@
 
 return [
     'api-key' => 'Trello API key (short ome)',
+    'dbCacheDir' => __DIR__.'/cache/db',
 ];

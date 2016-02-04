@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Card name</th>
+            <th>Dev</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in cards %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>
+                    {% for m in c.dev %}
+                        {{ app.members.getName(m) }},
+                    {% endfor %}
+                </td>
+                <td>
+                    {% if c.lastChangeDate is not empty %}
+                        {{ c.lastChangeDate.format('Y-m-d H:i:s') }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
